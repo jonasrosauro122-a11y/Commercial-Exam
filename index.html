@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAVA Insurance Commercial Lines Final Exam</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#090909;--bg2:#1a0507;--bg3:#43080f;--red:#ef4444;--red2:#ff5b5b;--orange:#ff7a00;--gold:#ffb347;
+      --text:#fff;--muted:#f7dcdc;--line:rgba(255,255,255,.12);--card:rgba(255,255,255,.07);--card2:rgba(255,255,255,.05);
+    }
+    *{box-sizing:border-box} html,body{margin:0;padding:0} body{font-family:Arial,Helvetica,sans-serif;color:var(--text);min-height:100vh;
+      background:radial-gradient(circle at 8% 10%,rgba(255,110,0,.18),transparent 18%),radial-gradient(circle at 92% 12%,rgba(239,68,68,.18),transparent 22%),radial-gradient(circle at 50% 100%,rgba(255,150,50,.12),transparent 24%),linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 35%,var(--bg3) 70%,#0c0c0c 100%);
+      overflow-x:hidden;position:relative}
+    body:before,body:after{content:"";position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;filter:blur(90px);opacity:.20;z-index:0;animation:floatGlow 10s ease-in-out infinite}
+    body:before{top:-80px;left:-120px;background:#ff4d00} body:after{bottom:-90px;right:-100px;background:#dc2626;animation-delay:2s}
+    .vector-overlay{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.28;background-image:linear-gradient(120deg,transparent 0 45%,rgba(255,255,255,.04) 45% 46%,transparent 46% 100%),linear-gradient(160deg,transparent 0 58%,rgba(255,255,255,.03) 58% 59%,transparent 59% 100%),linear-gradient(20deg,transparent 0 70%,rgba(255,255,255,.025) 70% 71%,transparent 71% 100%)}
+    @keyframes floatGlow{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+    .page{position:relative;z-index:1;width:min(1280px,calc(100% - 28px));margin:22px auto 40px}
+    .hero-grid,.drag-grid,.review-grid,.stats-grid,.answer-key-grid{display:grid;gap:18px}.hero-grid{grid-template-columns:1.28fr .72fr}.drag-grid{grid-template-columns:.92fr 1.08fr}.review-grid,.answer-key-grid{grid-template-columns:1fr 1fr}.stats-grid{grid-template-columns:repeat(4,1fr)}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.055));border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:0 18px 40px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+    .brand-row{display:flex;align-items:center;gap:16px;margin-bottom:16px}.logo-wrap{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);overflow:hidden;flex:0 0 auto}.logo-wrap img{width:72px;height:72px;object-fit:contain}.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,122,0,.18);border:1px solid rgba(255,177,71,.24);color:#ffe1c0;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+    h1,h2,h3,h4,p{margin-top:0}.hero-title{font-size:clamp(30px,4.4vw,42px);line-height:1.06;margin-bottom:10px;font-weight:900}.muted{color:var(--muted);line-height:1.65}.field{margin-bottom:14px}label{display:block;font-size:14px;margin-bottom:8px;color:#ffe4d0;font-weight:700}
+    input,select,button{font:inherit} input,select{width:100%;padding:14px 16px;border-radius:16px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.14);color:#fff;outline:none} input::placeholder{color:#d3b2b2} select option{color:#111;background:#fff}
+    .stats-grid .mini-card{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:16px}.mini-label{font-size:12px;color:#f1caca}.mini-value{font-size:28px;font-weight:900;margin-top:8px;color:#fff3ea}
+    .timer-box{margin-top:14px;padding:18px;border-radius:22px;background:linear-gradient(135deg,rgba(255,122,0,.16),rgba(239,68,68,.14));border:1px solid rgba(255,255,255,.1)}.timer-value{font-size:36px;font-weight:900;letter-spacing:1px;margin-bottom:8px}.timer-warning{color:#fecaca}
+    .progress-row{display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap}.progress-track{flex:1;min-width:240px;height:12px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08)}.progress-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--red2));width:0;transition:width .25s ease}
+    .question-card{margin-top:14px;border-radius:20px;padding:18px;background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.08)}.question-number{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,122,0,.14);border:1px solid rgba(255,177,71,.18);color:#ffd1ac;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}.btn{border:0;border-radius:16px;padding:14px 18px;font-weight:900;cursor:pointer;transition:transform .16s ease,opacity .16s ease}.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.btn-primary{color:#fff;background:linear-gradient(90deg,var(--orange),var(--red))}.btn-secondary{color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}.btn-success{color:#fff;background:linear-gradient(90deg,#16a34a,#22c55e)}.btn-danger{color:#fff;background:linear-gradient(90deg,#b91c1c,#ef4444)}
+    .message{margin-top:14px;padding:14px 16px;border-radius:16px;background:rgba(255,177,71,.12);border:1px solid rgba(255,177,71,.24);color:#ffe0ac;white-space:pre-wrap}
+    .drag-side{display:flex;flex-direction:column;justify-content:space-between;min-height:360px}.drag-chip{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;background:rgba(255,122,0,.14);border:1px solid rgba(255,177,71,.18);color:#ffd7bb;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+    .drag-card{padding:26px;text-align:center;font-size:24px;font-weight:900;border-radius:26px;background:linear-gradient(135deg,rgba(255,122,0,.22),rgba(239,68,68,.22));border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 32px rgba(0,0,0,.24);user-select:none;cursor:grab;animation:popIn .35s ease,floatCard 2.8s ease-in-out infinite;margin-top:16px}.drag-card:active{cursor:grabbing}@keyframes popIn{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .drop-zones{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.drop-zone{min-height:310px;border-radius:26px;padding:22px;background:rgba(0,0,0,.18);border:2px dashed rgba(255,255,255,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}.drop-zone:before{content:"";position:absolute;inset:-35%;background:radial-gradient(circle,rgba(255,140,0,.18),transparent 42%);opacity:0;transition:opacity .25s ease}.drop-zone:hover,.drop-zone.active{transform:translateY(-2px);border-color:rgba(255,177,71,.34);box-shadow:0 14px 32px rgba(0,0,0,.22)}.drop-zone:hover:before,.drop-zone.active:before{opacity:1}.drop-zone.flash-cov{box-shadow:0 0 0 16px rgba(255,140,0,.10)}.drop-zone.flash-doc{box-shadow:0 0 0 16px rgba(239,68,68,.10)}.zone-icon{width:88px;height:88px;display:grid;place-items:center;border-radius:50%;font-size:40px;background:linear-gradient(135deg,rgba(255,122,0,.25),rgba(239,68,68,.20));border:1px solid rgba(255,255,255,.12);margin-bottom:14px;position:relative;z-index:1}.zone-title,.zone-text,.zone-pill{position:relative;z-index:1}.zone-title{font-size:24px;font-weight:900;margin-bottom:8px}.zone-text{color:var(--muted);line-height:1.6}.zone-pill{margin-top:14px;border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);font-size:13px;font-weight:800;color:#ffe7d4}
+    .result-badge{display:inline-flex;align-items:center;padding:10px 16px;border-radius:999px;font-weight:900;margin-bottom:16px}.result-pass{background:rgba(34,197,94,.14);color:#b8f7cf}.result-fail{background:rgba(239,68,68,.14);color:#fecaca}.review-item{margin-top:12px;padding:14px;border-radius:16px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.08)}
+    .certificate{background:#f4f0e7;color:#111;border-radius:18px;padding:0;border:1px solid rgba(17,17,17,.18);box-shadow:0 18px 40px rgba(0,0,0,.24);overflow:hidden}
+    .certificate-inner{position:relative;min-height:760px;padding:40px 36px 110px;text-align:center;background:linear-gradient(rgba(255,255,255,.80),rgba(255,255,255,.82)),url('images/certificate-bg.png') center/cover no-repeat;background-blend-mode:screen;overflow:hidden}
+    .certificate-inner:before{content:"";position:absolute;inset:18px;border:2px solid rgba(107,33,33,.45);pointer-events:none;border-radius:8px}.certificate-inner:after{content:"";position:absolute;inset:34px;border:1px solid rgba(107,33,33,.28);pointer-events:none;border-radius:4px}
+    .cert-logo{position:relative;z-index:2;width:88px;height:88px;object-fit:contain;margin:0 auto 18px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.12))}.cert-small{position:relative;z-index:2;font-family:'Cinzel',serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#7b1d1d;font-weight:700}.cert-title{position:relative;z-index:2;font-family:'Cinzel',serif;font-size:clamp(34px,4vw,54px);line-height:1.15;font-weight:800;color:#111;margin:14px 0 10px}.cert-subtitle{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:#7b1d1d;letter-spacing:1px;margin-bottom:26px}.cert-presented{position:relative;z-index:2;margin-top:18px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#7b1d1d}.cert-name{position:relative;z-index:2;margin-top:28px;font-size:clamp(28px,4vw,52px);font-weight:800;font-family:'Cormorant Garamond',serif;color:#171717;letter-spacing:1px;text-transform:uppercase}.cert-name-rule{position:relative;z-index:2;width:min(630px,84%);margin:10px auto 0;border-top:2px solid #2e2e2e}.cert-body{position:relative;z-index:2;max-width:760px;margin:28px auto 0;font-size:20px;line-height:1.7;color:#5a1010;font-family:'Cormorant Garamond',serif;font-weight:600}.cert-meta-row{position:relative;z-index:2;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}.cert-pill{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.76);border:1px solid rgba(125,17,17,.15);font-size:12px;font-weight:800;letter-spacing:.8px;color:#4b1010;text-transform:uppercase;font-family:'Cinzel',serif}.cert-pill span{display:block;margin-top:4px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-transform:none;letter-spacing:0}.cert-signatures{position:relative;z-index:2;display:flex;justify-content:center;margin-top:70px;padding:0 24px}.cert-sign{text-align:center;font-family:'Cinzel',serif;color:#7b1111;max-width:420px;width:100%}.cert-sign .line{width:min(100%,280px);border-top:2px solid #333;margin:0 auto 10px}.cert-sign-name{font-size:20px;font-weight:800;letter-spacing:1px;text-transform:uppercase}.cert-sign-title{margin-top:4px;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);display:grid;place-items:center;z-index:50;padding:16px}.modal-card{width:min(460px,100%);background:linear-gradient(180deg,rgba(30,8,8,.98),rgba(22,8,8,.96));border:1px solid rgba(255,255,255,.10);border-radius:24px;padding:22px;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+    .status-correct{color:#86efac;font-weight:700}.status-wrong{color:#fca5a5;font-weight:700}.hidden{display:none!important}
+    @media (max-width:980px){.hero-grid,.drag-grid,.review-grid,.stats-grid,.answer-key-grid,.drop-zones{grid-template-columns:1fr}.page{width:min(100% - 18px,1280px)}.hero-title{font-size:30px}.drop-zone{min-height:250px}.certificate-inner{padding:28px 16px 90px}.cert-body{font-size:18px}}
+  </style>
+</head>
+<body>
+  <div class="vector-overlay"></div>
+  <div class="page">
+    <div class="hero-grid">
+      <section class="card">
+        <div class="brand-row">
+          <div class="logo-wrap"><img id="logoExam" src="images/logo.png" alt="LAVA Logo" onerror="this.style.display='none';this.parentElement.textContent='LAVA';this.parentElement.style.fontWeight='900';" /></div>
+          <div>
+            <div class="badge">LAVA Training Exam Portal</div>
+            <h1 class="hero-title">Insurance Commercial Lines Final Exam</h1>
+          </div>
+        </div>
+        <p class="muted">This standalone Commercial Lines exam has a <strong>30-minute timer</strong>, a strict <strong>3-take limit</strong>, a <strong>90% passing score</strong>, randomized Commercial Lines questions, admin-locked review, and automatic certificate generation for passers.</p>
+        <div class="stats-grid">
+          <div class="mini-card"><div class="mini-label">Passing Score</div><div class="mini-value">90%</div></div>
+          <div class="mini-card"><div class="mini-label">Timer</div><div class="mini-value">30 Min</div></div>
+          <div class="mini-card"><div class="mini-label">Max Takes</div><div class="mini-value">3</div></div>
+          <div class="mini-card"><div class="mini-label">Format</div><div class="mini-value">Standalone</div></div>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Trainee Information</h2>
+        <div class="field"><label for="candidateName">Full Name</label><input id="candidateName" type="text" placeholder="Enter trainee name" /></div>
+        <div class="field"><label for="agencyName">Agency / Team</label><input id="agencyName" type="text" placeholder="Enter agency or batch" /></div>
+        <div class="field"><label for="trainerName">Trainer Name</label><input id="trainerName" type="text" value="LAVA Training Department" /></div>
+        <div class="timer-box">
+          <div class="mini-label">Exam Timer</div><div id="timerValue" class="timer-value">30:00</div>
+          <p class="muted" style="margin-bottom:0">Attempts used: <strong id="attemptsUsed">0</strong> / 3</p>
+          <p class="muted" style="margin:4px 0 0">Current take: <strong id="currentTake">-</strong></p>
+        </div>
+        <div class="actions"><button id="shuffleBtn" class="btn btn-secondary">Shuffle Questions</button><button id="startBtn" class="btn btn-primary">Start Exam</button><button id="resetBtn" class="btn btn-secondary">Reset Current Form</button></div>
+      </section>
+    </div>
+    <section class="card" style="margin-bottom:18px"><div class="progress-row"><div><h3 style="margin-bottom:6px">Exam Progress</h3><div class="muted">Completed <strong id="progressText">0</strong> of <strong id="totalItems">0</strong> items</div></div><div style="display:flex;align-items:center;gap:12px;width:min(100%,560px)"><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><strong id="progressPct">0%</strong></div></div></section>
+    <section class="card" style="margin-bottom:18px"><h2>Section 1: Randomized Commercial Lines Questionnaire</h2><p class="muted">Questions are randomized every exam take, but the visible numbering always follows proper counting order.</p><div id="questionsContainer"></div></section>
+    <section class="card" style="margin-bottom:18px"><div class="actions"><button id="submitBtn" class="btn btn-primary">Submit Final Exam</button><button id="adminAccessBtn" class="btn btn-secondary hidden">Admin Review</button><button id="nextTakeBtn" class="btn btn-danger hidden">Prepare Next Take</button><button id="downloadCertificateBtn" class="btn btn-success hidden">Download Certificate Again</button></div><div id="messageBox" class="message hidden"></div></section>
+    <section id="resultCard" class="card hidden" style="margin-bottom:18px"></section>
+    <section id="certificateCard" class="certificate hidden"><div class="certificate-inner"><img class="cert-logo" src="images/logo.png" alt="LAVA Logo" /><div class="cert-small">Official Training Certificate</div><div class="cert-title">Certificate of Completion</div><div class="cert-subtitle">Insurance Commercial Lines Final Examination</div><div class="cert-presented">This certificate is proudly presented to</div><div id="certName" class="cert-name">Trainee Name</div><div class="cert-name-rule"></div><p id="certBody" class="cert-body"></p><div class="cert-meta-row"><div class="cert-pill">Certificate No.<span id="certMetaNo"></span></div><div class="cert-pill">Score<span id="certMetaScore"></span></div><div class="cert-pill">Agency<span id="certMetaAgency"></span></div><div class="cert-pill">Date Issued<span id="certMetaDate"></span></div><div class="cert-pill">Take Number<span id="certMetaTake"></span></div></div><div class="cert-signatures"><div class="cert-sign"><div class="line"></div><div id="certTrainerSignName" class="cert-sign-name">Trainer Name</div><div id="certTrainerSignTitle" class="cert-sign-title">Insurance Trainer Facilitator</div></div></div></div></section>
+    <form name="commercial-exam-results" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden" id="netlifyExamForm"><input type="hidden" name="form-name" value="commercial-exam-results" /><input type="hidden" name="subject" value="LAVA Commercial Lines Exam Submission" /><input type="hidden" name="bot-field" /><input type="hidden" name="candidate_name" /><input type="hidden" name="agency" /><input type="hidden" name="trainer_name" /><input type="hidden" name="score" /><input type="hidden" name="passed" /><input type="hidden" name="objective_correct" /><input type="hidden" name="drag_correct" value="Removed - question-only exam" /><input type="hidden" name="take_number" /><input type="hidden" name="certificate_number" /><input type="hidden" name="submitted_at" /><input type="hidden" name="duration_used" /><input type="hidden" name="result_summary" /><input type="hidden" name="recipient_1" value="leo@lavaautomation.com" /><input type="hidden" name="recipient_2" value="jonas@lavaautomation.com" /><input type="hidden" name="recipient_3" value="au@lavaautomation.com" /><input type="hidden" name="recipient_4" value="alchanie@lavaautomation.com" /></form>
+    <div id="adminModal" class="modal-backdrop hidden"><div class="modal-card"><div class="badge" style="margin-bottom:14px">Admin Secure Access</div><h3 style="margin-bottom:8px">Enter Admin Password</h3><p class="muted" style="margin-bottom:14px">Only admin can view the detailed result, correct answers, and certificate.</p><div class="field"><label for="adminPasswordInput">Admin Password</label><input id="adminPasswordInput" type="password" placeholder="Enter admin password" /></div><div id="adminError" class="message hidden" style="margin-top:0;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.25);color:#fecaca"></div><div class="actions"><button id="adminUnlockBtn" class="btn btn-primary">Unlock Admin Review</button><button id="adminCancelBtn" class="btn btn-secondary">Cancel</button></div></div></div>
+  </div>
+  <script>
+    const PASSING_SCORE = 90;
+    const EXAM_DURATION = 30 * 60;
+    const MAX_TAKES = 3;
+    const ADMIN_PASSWORD = 'LAVAADMIN123';
+    const CERTIFICATE_TRAINER_TITLE = 'Insurance Trainer Facilitator';
+    const EMAILJS_CONFIG = { enabled: false, publicKey: '', serviceId: '', templateId: '' };
+    const OBJECTIVE_QUESTIONS = [{"id": 1, "type": "mcq", "question": "A Commercial General Liability declaration page specifies all of the following except:", "options": ["Policy Period", "Policy Limits", "Date of Birth", "Named Insured"], "answer": "Date of Birth"}, {"id": 2, "type": "tf", "question": "A Commercial General Liability policy can only be written as a stand-alone policy.", "options": ["TRUE", "FALSE"], "answer": "FALSE"}, {"id": 3, "type": "mcq", "question": "Which of the following is a type of commercial policy form?", "options": ["Broad", "Commercial", "Selective", "General"], "answer": "Broad"}, {"id": 4, "type": "mcq", "question": "What company writes standard policy forms that have been adopted by insurance companies?", "options": ["Bureau of Insurance", "Insurance Center of America", "None of the Above", "Insurance Services Office"], "answer": "Insurance Services Office"}, {"id": 5, "type": "mcq", "question": "Commercial Auto policies can include what endorsements to cover vehicles that are rented or borrowed?", "options": ["Rental Auto Coverage", "Non-Owned Auto Coverage", "Motor Carrier Coverage", "Hired Auto Coverage"], "answer": "Hired Auto Coverage"}, {"id": 6, "type": "tf", "question": "Commercial auto insurance is an essential type of insurance for businesses that rely on vehicles to carry out their operations.", "options": ["TRUE", "FALSE"], "answer": "TRUE"}, {"id": 7, "type": "tf", "question": "A Commercial Umbrella policy can be purchased in place of other commercial policies to provide more coverage.", "options": ["TRUE", "FALSE"], "answer": "FALSE"}, {"id": 8, "type": "mcq", "question": "Cyber security will cover potential ____________ and other mandated costs you would have to pay when your data is breached.", "options": ["Lawsuits", "Identity theft", "Liability", "Refunds"], "answer": "Lawsuits"}, {"id": 9, "type": "tf", "question": "Workers' compensation law is the same across all 50 states.", "options": ["TRUE", "FALSE"], "answer": "FALSE"}, {"id": 10, "type": "mcq", "question": "A monopolistic state requires an insured to purchase workers' compensation insurance directly from the state. Which of the following is a monopolistic state?", "options": ["Ohio", "Montana", "Michigan", "North Carolina"], "answer": "Ohio"}, {"id": 11, "type": "mcq", "question": "What does Errors and Omissions insurance provide?", "options": ["Protection for businesses and individuals in case they are sued for failing to provide professional services or making mistakes in their work", "Protection for a business that makes the mistake of not carrying commercial insurance", "Protection for businesses that purchase insurance under a false business name", "Protection for a business that is unable to pay the premium of their underlying policies"], "answer": "Protection for businesses and individuals in case they are sued for failing to provide professional services or making mistakes in their work"}, {"id": 12, "type": "mcq", "question": "A Certificate of Insurance is a document that:", "options": ["Summarizes a business' insurance coverage", "Is a document an insurance agency hangs in their office informing what types of insurance they carry", "Is earned by an insurance agency for outstanding performance", "Is proof an agency is legally able to sell insurance"], "answer": "Summarizes a business' insurance coverage"}, {"id": 13, "type": "mcq", "question": "Who generates a Loss Runs report?", "options": ["The insured", "The Bureau of Insurance", "The insurance company", "The insurance agent"], "answer": "The insurance company"}, {"id": 14, "type": "mcq", "question": "What is the purpose of requiring a Certificate of Insurance (COI) in business transactions?", "options": ["To provide proof of identity", "To grant a company access to insurance coverage", "To ensure all parties are protected against potential risks", "To showcase a company's yearly revenue"], "answer": "To ensure all parties are protected against potential risks"}, {"id": 15, "type": "mcq", "question": "What is the purpose of a Loss Runs report in the realm of Commercial Insurance?", "options": ["To determine the weather conditions of the business location", "To assess the risk level of insuring a particular business based on its resolved and pending insurance claims", "To inform a company how many claims they are allowed to make with an insurance carrier", "To predict the future of a business's insurance claim history"], "answer": "To assess the risk level of insuring a particular business based on its resolved and pending insurance claims"}, {"id": 16, "type": "mcq", "question": "Why does an insurance company conduct a commercial insurance audit at the end of a policy period?", "options": ["To ensure the premium charged accurately reflects the business’s risk exposure based on the information provided at the start of the policy term", "To verify how many employees the company has on payroll", "To select the best employee of the year", "To verify the business’s social media activity"], "answer": "To ensure the premium charged accurately reflects the business’s risk exposure based on the information provided at the start of the policy term"}, {"id": 17, "type": "mcq", "question": "On a Workers' Compensation policy, an insured can be responsible for all of the following EXCEPT:", "options": ["A client", "Employees", "The named insured", "Independent contractors"], "answer": "A client"}, {"id": 18, "type": "mcq", "question": "What makes Tarmika unique?", "options": ["Its integration into EZLynx", "Its integration into Applied Epic", "Its integration into Hawksoft", "Its integration into QQ Catalyst"], "answer": "Its integration into EZLynx"}, {"id": 19, "type": "mcq", "question": "ACORD works to improve all of the following in the insurance industry EXCEPT:", "options": ["Speed", "Coverages", "Efficiency", "Accuracy"], "answer": "Coverages"}, {"id": 20, "type": "mcq", "question": "What is considered a crime in all 50 states when it comes to insurance information?", "options": ["Providing false information is illegal", "Providing false information is legal", "Providing false information is expected", "Providing false information is acceptable"], "answer": "Providing false information is illegal"}, {"id": 21, "type": "mcq", "question": "Who conducts an insurance audit?", "options": ["Government", "Insured", "Insured's Bank", "Insurance Company"], "answer": "Insurance Company"}, {"id": 22, "type": "mcq", "question": "What is the purpose of the ACORD forms in the insurance industry?", "options": ["To streamline and standardize information-sharing processes", "To complicate information-sharing processes", "To confuse insurance professionals", "For insureds to handle their own policies"], "answer": "To streamline and standardize information-sharing processes"}, {"id": 23, "type": "mcq", "question": "What information does ACORD 125, the Commercial Insurance Application form focus on?", "options": ["Details about the insured, policy being applied for, and risk-related information", "Commercial Property Coverage Only", "Workers' Compensation", "Liability coverage Only"], "answer": "Details about the insured, policy being applied for, and risk-related information"}, {"id": 24, "type": "mcq", "question": "Commercial General Liability (CGL) insurance provides protection for businesses against potential financial risks arising from liabilities such as:", "options": ["Property Improvement", "Workers' Compensation", "Employee Benefits", "Bodily Injury"], "answer": "Bodily Injury"}, {"id": 25, "type": "mcq", "question": "Which of the following is typically covered under a Commercial General Liability (CGL) policy?", "options": ["Commercial property coverage", "Lost employee wages", "Premises liability", "Health insurance premiums"], "answer": "Premises liability"}, {"id": 26, "type": "mcq", "question": "What does “occurrence” refer to in the context of Commercial General Liability (CGL) insurance?", "options": ["An unplanned event that results in bodily injury or property damage", "An employee injury while on the job", "An intentional act to harm others", "Preventative measures to reduce accidents"], "answer": "An unplanned event that results in bodily injury or property damage"}, {"id": 27, "type": "mcq", "question": "What is an important aspect of Commercial Auto Insurance policies that can provide extra protection for businesses?", "options": ["Unlimited coverage for all vehicles", "Coverage for Equipment Breakdown", "Motor Carrier Coverage", "Coverage for personal vehicles"], "answer": "Motor Carrier Coverage"}, {"id": 28, "type": "mcq", "question": "Why is Cyber insurance important for businesses?", "options": ["To provide retirement benefits", "To provide routine maintenance costs", "To provide employee health benefits", "To protect from financial losses due to cyber incidents"], "answer": "To protect from financial losses due to cyber incidents"}, {"id": 29, "type": "mcq", "question": "What can the protection provided by Errors & Omissions (E&O) insurance help cover?", "options": ["Health benefits", "Company vehicles", "Employee salaries", "Legal fees resulting from negligence claims"], "answer": "Legal fees resulting from negligence claims"}, {"id": 30, "type": "mcq", "question": "What does CGL stand for in the insurance industry?", "options": ["Commercial General Liability", "Corporate Governance Law", "Creative Graphics Lab", "Customer Guarantee Line"], "answer": "Commercial General Liability"}, {"id": 31, "type": "mcq", "question": "What is the function of the deductibles in CGL?", "options": ["To increase the coverage limits", "To specify what is not covered", "To lower the insurance premium", "To set out-of-pocket amount before insurer pays a claim"], "answer": "To set out-of-pocket amount before insurer pays a claim"}, {"id": 32, "type": "mcq", "question": "What is workers’ compensation?", "options": ["A type of auto insurance that covers damages to employees vehicles in the workplace", "A type of commercial insurance that provides coverage for employees who are injured on the job", "An investment opportunity for businesses", "A type of health insurance that focuses on preventive care for employees"], "answer": "A type of commercial insurance that provides coverage for employees who are injured on the job"}, {"id": 33, "type": "mcq", "question": "Why is workers’ compensation important for businesses?", "options": ["To increase company profits", "To protect employees and employers in the case of a workplace injury", "To offer free lunches to employees", "To avoid paying for employee mistakes"], "answer": "To protect employees and employers in the case of a workplace injury"}, {"id": 34, "type": "mcq", "question": "What can happen if a business fails to comply with workers’ compensation laws?", "options": ["Tax refunds for all employees", "Employee demotions", "More vacations for everyone", "Hefty fines and penalties"], "answer": "Hefty fines and penalties"}, {"id": 35, "type": "mcq", "question": "Commercial auto insurance is essential for businesses that rely on vehicles to conduct their operations to protect them from financial losses in case of ___________.", "options": ["Auto accidents", "Vehicle maintenance costs", "Expected events", "Vehicle improvements"], "answer": "Auto accidents"}, {"id": 36, "type": "mcq", "question": "Which of the following is NOT typically included in commercial auto insurance?", "options": ["Liability coverage", "Medical payments", "Travel insurance", "Collision coverage"], "answer": "Travel insurance"}, {"id": 37, "type": "mcq", "question": "What are endorsements in commercial auto insurance policies?", "options": ["Additional coverages that can be added to provide extra protection", "List of drivers", "Discounts for safe drivers", "Types of vehicles covered"], "answer": "Additional coverages that can be added to provide extra protection"}, {"id": 38, "type": "mcq", "question": "What is motor carrier coverage in commercial auto insurance designed for?", "options": ["Employees vehicles", "Businesses that transport goods or passengers for hire", "Private vehicle owners", "Motorcycles"], "answer": "Businesses that transport goods or passengers for hire"}, {"id": 39, "type": "mcq", "question": "What does commercial property insurance provide coverage for?", "options": ["Business operations", "Retirement benefits", "Health insurance plans", "Physical assets"], "answer": "Physical assets"}, {"id": 40, "type": "mcq", "question": "Which of the following are examples of physical assets covered by commercial property insurance?", "options": ["Social media accounts", "Buildings", "Employee salaries", "Employee retirement benefits"], "answer": "Buildings"}, {"id": 41, "type": "mcq", "question": "What events can cause property damage covered by commercial property insurance?", "options": ["Global warming", "Natural disasters", "Maintenance issues", "Alien invasions"], "answer": "Natural disasters"}, {"id": 42, "type": "mcq", "question": "Which of the following is NOT a situation where Commercial Umbrella insurance can provide additional protection?", "options": ["A slip-and-fall accident on your premises", "Vehicle maintenance coverage", "A defamation claim", "A multiple car accident resulting in bodily injury for multiple passengers"], "answer": "Vehicle maintenance coverage"}, {"id": 43, "type": "mcq", "question": "What is one of the significant benefits of Commercial Umbrella insurance?", "options": ["It is very expensive and not cost-effective", "It only covers specific types of liability claims", "It is only available for specific business types", "It offers cost-effectiveness by significantly increasing liability coverage for a small premium"], "answer": "It offers cost-effectiveness by significantly increasing liability coverage for a small premium"}, {"id": 44, "type": "mcq", "question": "When is third-party coverage in cyber insurance needed?", "options": ["When the insured has their identity stolen", "When lightning strikes a computer system", "When a customer or partner sues the business for failing to protect their data", "When there is a promotion to attract more customers"], "answer": "When a customer or partner sues the business for failing to protect their data"}, {"id": 45, "type": "mcq", "question": "What is Errors & Omissions (E&O) insurance also known as?", "options": ["Business Interruption Insurance", "Workers' Compensation Insurance", "Professional Liability Insurance", "General Liability Insurance"], "answer": "Professional Liability Insurance"}, {"id": 46, "type": "mcq", "question": "Who may benefit most from E&O insurance?", "options": ["Restaurants", "Lawyers", "Photographers", "Carpenters"], "answer": "Lawyers"}, {"id": 47, "type": "mcq", "question": "Why is E&O insurance important for professionals?", "options": ["To cover personal vacations", "To skip legal regulations", "To build credibility with clients", "To purchase more properties"], "answer": "To build credibility with clients"}, {"id": 48, "type": "mcq", "question": "When is an adjustment of premium necessary after an audit?", "options": ["To charge the business extra fees", "To bind the insurance policy", "To align insurance premium with the business's actual figures", "To cancel the insurance policy"], "answer": "To align insurance premium with the business's actual figures"}, {"id": 49, "type": "mcq", "question": "What happens during the audit process at the end of a policy period?", "options": ["The insurance company issues a refund to the business", "The insurance company determines the profit of the business", "The insurance company processes a claim for the business", "The insurance company reviews actual figures to compare with estimates"], "answer": "The insurance company reviews actual figures to compare with estimates"}, {"id": 50, "type": "mcq", "question": "For which types of insurance policies are audits common?", "options": ["Life insurance and home insurance", "Health insurance and travel insurance", "Commercial auto and commercial property", "Workers' compensation and general liability"], "answer": "Workers' compensation and general liability"}];
+
+    const el = {
+      candidateName: document.getElementById('candidateName'),
+      agencyName: document.getElementById('agencyName'),
+      trainerName: document.getElementById('trainerName'),
+      attemptsUsed: document.getElementById('attemptsUsed'),
+      currentTake: document.getElementById('currentTake'),
+      timerValue: document.getElementById('timerValue'),
+      shuffleBtn: document.getElementById('shuffleBtn'),
+      startBtn: document.getElementById('startBtn'),
+      resetBtn: document.getElementById('resetBtn'),
+      submitBtn: document.getElementById('submitBtn'),
+      adminAccessBtn: document.getElementById('adminAccessBtn'),
+      nextTakeBtn: document.getElementById('nextTakeBtn'),
+      downloadCertificateBtn: document.getElementById('downloadCertificateBtn'),
+      adminModal: document.getElementById('adminModal'),
+      adminPasswordInput: document.getElementById('adminPasswordInput'),
+      adminUnlockBtn: document.getElementById('adminUnlockBtn'),
+      adminCancelBtn: document.getElementById('adminCancelBtn'),
+      adminError: document.getElementById('adminError'),
+      questionsContainer: document.getElementById('questionsContainer'),
+      progressText: document.getElementById('progressText'),
+      totalItems: document.getElementById('totalItems'),
+      progressFill: document.getElementById('progressFill'),
+      progressPct: document.getElementById('progressPct'),
+      messageBox: document.getElementById('messageBox'),
+      resultCard: document.getElementById('resultCard'),
+      certificateCard: document.getElementById('certificateCard'),
+      certName: document.getElementById('certName'),
+      certBody: document.getElementById('certBody'),
+      certMetaNo: document.getElementById('certMetaNo'),
+      certMetaScore: document.getElementById('certMetaScore'),
+      certMetaAgency: document.getElementById('certMetaAgency'),
+      certMetaDate: document.getElementById('certMetaDate'),
+      certMetaTake: document.getElementById('certMetaTake'),
+      certTrainerSignName: document.getElementById('certTrainerSignName'),
+      certTrainerSignTitle: document.getElementById('certTrainerSignTitle')
+    };
+
+    const state = {
+      questions: [],
+      answers: {},
+      started: false,
+      currentTake: 0,
+      timerId: null,
+      secondsLeft: EXAM_DURATION,
+      result: null,
+      adminUnlocked: false
+    };
+
+    function shuffle(arr){
+      const copy=[...arr];
+      for(let i=copy.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [copy[i],copy[j]]=[copy[j],copy[i]];
+      }
+      return copy;
+    }
+    function buildOptions(q){ return shuffle(q.options || []); }
+    function formatTime(total){ const m=Math.floor(total/60), s=total%60; return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+    function escapeHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function normalizedName(n){ return n.trim().toLowerCase(); }
+    function getAttemptsForName(name){ return Number(localStorage.getItem('lava_commercial_exam_attempts_'+normalizedName(name)) || 0); }
+    function setAttemptsForName(name,val){ localStorage.setItem('lava_commercial_exam_attempts_'+normalizedName(name), String(val)); }
+    function showMessage(t){ el.messageBox.textContent=t; el.messageBox.classList.remove('hidden'); }
+    function hideMessage(){ el.messageBox.textContent=''; el.messageBox.classList.add('hidden'); }
+    function updateAttemptsUI(){ const name=el.candidateName.value.trim(); const attempts=name ? getAttemptsForName(name) : 0; el.attemptsUsed.textContent=attempts; el.currentTake.textContent=state.currentTake ? state.currentTake : '-'; }
+
+    function buildExam(){
+      state.questions = shuffle(OBJECTIVE_QUESTIONS).map(q => ({...q, options: buildOptions(q)}));
+      state.answers = {};
+      state.result = null;
+      state.adminUnlocked = false;
+      renderQuestions();
+      renderProgress();
+      renderResult();
+      renderCertificate(null);
+      closeAdminModal();
+      hideMessage();
+      updateButtons();
+    }
+
+    function renderQuestions(){
+      el.questionsContainer.innerHTML='';
+      state.questions.forEach((q,index)=>{
+        const wrap=document.createElement('div');
+        wrap.className='question-card';
+        const num=document.createElement('div');
+        num.className='question-number';
+        num.textContent='Question '+(index+1);
+        const p=document.createElement('p');
+        p.textContent=q.question;
+        const sel=document.createElement('select');
+        sel.disabled=!state.started || !!state.result;
+        sel.innerHTML='<option value="">Select your answer</option>' + q.options.map(opt=>`<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`).join('');
+        sel.value=state.answers[q.id] || '';
+        sel.addEventListener('change', e=>{ state.answers[q.id]=e.target.value; renderProgress(); });
+        wrap.appendChild(num); wrap.appendChild(p); wrap.appendChild(sel);
+        el.questionsContainer.appendChild(wrap);
+      });
+      el.totalItems.textContent=String(state.questions.length);
+    }
+
+    function renderProgress(){
+      const done = Object.keys(state.answers).filter(id => state.answers[id]).length;
+      const total = state.questions.length;
+      const pct = total ? Math.round((done/total)*100) : 0;
+      el.progressText.textContent=String(done);
+      el.totalItems.textContent=String(total);
+      el.progressFill.style.width=pct+'%';
+      el.progressPct.textContent=pct+'%';
+    }
+
+    function renderResult(){
+      if(!state.result || !state.adminUnlocked){
+        el.resultCard.classList.add('hidden');
+        el.resultCard.innerHTML='';
+        return;
+      }
+      const r=state.result;
+      const badge=`<div class="result-badge ${r.passed?'result-pass':'result-fail'}">${r.passed?'Passed':'Needs Retake'}</div>`;
+      const missedHtml=!r.passed
+        ? `<div class="review-grid" style="margin-top:18px"><div class="question-card"><h3>Missed / Unanswered Questions</h3>${r.missedQuestions.length ? r.missedQuestions.map(item=>`<div class="review-item"><div class="question-number">Question ${item.displayNumber}</div><div>${escapeHtml(item.question)}</div><div style="margin-top:8px;color:#fca5a5">Your answer: ${escapeHtml(item.userAnswer || 'No answer')}</div><div style="margin-top:6px;color:#86efac">Correct answer: ${escapeHtml(item.answer)}</div></div>`).join('') : '<div class="review-item">Perfect score in the question section.</div>'}</div><div class="question-card"><h3>Retake Guidance</h3><p class="muted">Review the missed items carefully. When you prepare the next take, the questions will be randomized again.</p></div></div>`
+        : '';
+      const answerKeyHtml=`<div class="answer-key-grid"><div class="question-card"><h3>Full Question Answer Key</h3>${r.allQuestions.map(item=>`<div class="review-item"><div class="question-number">Question ${item.displayNumber}</div><div>${escapeHtml(item.question)}</div><div style="margin-top:8px">Your answer: <span class="${item.userAnswer===item.answer?'status-correct':'status-wrong'}">${escapeHtml(item.userAnswer || 'No answer')}</span></div><div style="margin-top:6px;color:#86efac">Correct answer: ${escapeHtml(item.answer)}</div></div>`).join('')}</div></div>`;
+      el.resultCard.innerHTML = `${badge}<h2>Exam Result</h2><p class="muted">${escapeHtml(r.name)} scored <strong>${r.percentage}%</strong> on the Insurance Commercial Lines Final Exam.</p><div class="stats-grid" style="margin-top:16px"><div class="mini-card"><div class="mini-label">Overall Score</div><div class="mini-value">${r.percentage}%</div></div><div class="mini-card"><div class="mini-label">Correct Answers</div><div class="mini-value">${r.objectiveCorrect}/${r.objectiveTotal}</div></div><div class="mini-card"><div class="mini-label">Missed Items</div><div class="mini-value">${r.missedQuestions.length}</div></div><div class="mini-card"><div class="mini-label">Take Number</div><div class="mini-value">${r.takeNumber}</div></div></div>${missedHtml}${answerKeyHtml}`;
+      el.resultCard.classList.remove('hidden');
+    }
+
+    function renderCertificate(r){
+      if(!r || !r.passed || !state.adminUnlocked){ el.certificateCard.classList.add('hidden'); return; }
+      el.certName.textContent=r.name;
+      el.certBody.innerHTML=`for successfully passing the <strong>Insurance Commercial Lines Final Examination</strong> and demonstrating proficiency in the LAVA Insurance training program.`;
+      el.certMetaNo.textContent=r.certificateNumber;
+      el.certMetaScore.textContent=r.percentage + '%';
+      el.certMetaAgency.textContent=r.agency || 'LAVA Training Batch';
+      el.certMetaDate.textContent=r.date;
+      el.certMetaTake.textContent=String(r.takeNumber);
+      el.certTrainerSignName.textContent=r.trainer;
+      el.certTrainerSignTitle.textContent=CERTIFICATE_TRAINER_TITLE;
+      el.certificateCard.classList.remove('hidden');
+    }
+
+    function updateButtons(){
+      const name=el.candidateName.value.trim();
+      const attempts=name ? getAttemptsForName(name) : 0;
+      const locked=attempts>=MAX_TAKES;
+      el.shuffleBtn.disabled=state.started;
+      el.startBtn.disabled=state.started || !!state.result || locked;
+      el.submitBtn.disabled=!state.started || !!state.result;
+      el.adminAccessBtn.classList.toggle('hidden', !state.result);
+      el.nextTakeBtn.classList.toggle('hidden', !(state.result && !state.result.passed && attempts<MAX_TAKES));
+      el.downloadCertificateBtn.classList.toggle('hidden', !(state.result && state.result.passed && state.adminUnlocked));
+      if(locked && !state.started && !state.result && name){ showMessage('This trainee has already used all 3 allowed takes for this browser.'); }
+    }
+
+    function startTimer(){
+      clearTimer();
+      state.secondsLeft=EXAM_DURATION;
+      updateTimer();
+      state.timerId=setInterval(()=>{
+        state.secondsLeft -= 1;
+        updateTimer();
+        if(state.secondsLeft <= 0){ clearTimer(); submitExam(true); }
+      },1000);
+    }
+    function clearTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+    function updateTimer(){ el.timerValue.textContent=formatTime(Math.max(0,state.secondsLeft)); el.timerValue.classList.toggle('timer-warning', state.secondsLeft <= 300); }
+
+    async function ensureJsPDF(){
+      if(window.jspdf && window.jspdf.jsPDF) return true;
+      const sources=['https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js','https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js','https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js'];
+      for(const src of sources){
+        try{
+          await new Promise((resolve,reject)=>{ const s=document.createElement('script'); s.src=src; s.onload=resolve; s.onerror=reject; document.head.appendChild(s); });
+          if(window.jspdf && window.jspdf.jsPDF) return true;
+        }catch(e){}
+      }
+      return false;
+    }
+    async function imageToDataUrl(src){
+      return new Promise((resolve,reject)=>{
+        const img=new Image(); img.crossOrigin='anonymous';
+        img.onload=()=>{ try{ const canvas=document.createElement('canvas'); canvas.width=img.naturalWidth; canvas.height=img.naturalHeight; canvas.getContext('2d').drawImage(img,0,0); resolve(canvas.toDataURL('image/png')); }catch(err){ reject(err); } };
+        img.onerror=reject; img.src=src;
+      });
+    }
+
+    async function sendViaEmailJS(result, wasAutoSubmitted){
+      if(!EMAILJS_CONFIG.enabled || !EMAILJS_CONFIG.publicKey || !EMAILJS_CONFIG.serviceId || !EMAILJS_CONFIG.templateId || !window.emailjs) return {ok:false, reason:'emailjs-not-configured'};
+      try{
+        emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+        const params = {
+          email_subject: `LAVA Commercial Exam Result - ${result.name} - ${result.percentage}%`,
+          candidate_name: result.name,
+          agency: result.agency || 'LAVA Training Batch',
+          trainer_name: result.trainer,
+          score: String(result.percentage),
+          passed: result.passed ? 'Passed':'Failed',
+          objective_correct: `${result.objectiveCorrect}/${result.objectiveTotal}`,
+          drag_correct: 'Removed - question-only exam',
+          take_number: String(result.takeNumber),
+          certificate_number: result.certificateNumber,
+          submitted_at: new Date().toLocaleString(),
+          to_email: 'leo@lavaautomation.com, jonas@lavaautomation.com, au@lavaautomation.com, alchanie@lavaautomation.com'
+        };
+        await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, params);
+        return {ok:true, mode:'emailjs'};
+      }catch(error){ console.error('EmailJS error:', error); return {ok:false, reason:'emailjs-failed'}; }
+    }
+
+    async function sendResultSubmission(result, wasAutoSubmitted){
+      const emailJsResult = await sendViaEmailJS(result, wasAutoSubmitted);
+      if(emailJsResult.ok) return emailJsResult;
+      const form=document.getElementById('netlifyExamForm');
+      if(!form) return {ok:false, reason:'missing-form'};
+      const usedSeconds=EXAM_DURATION - Math.max(0,state.secondsLeft);
+      const summary=[
+        `Candidate: ${result.name}`,
+        `Agency: ${result.agency || 'LAVA Training Batch'}`,
+        `Trainer: ${result.trainer}`,
+        `Score: ${result.percentage}%`,
+        `Status: ${result.passed ? 'Passed':'Failed'}`,
+        `Take Number: ${result.takeNumber}`,
+        `Question Score: ${result.objectiveCorrect}/${result.objectiveTotal}`,
+        `Drag Section: Removed - question-only exam`,
+        `Certificate No: ${result.certificateNumber}`,
+        `Auto Submitted: ${wasAutoSubmitted ? 'Yes':'No'}`,
+        `Submitted At: ${new Date().toLocaleString()}`
+      ].join('\n');
+      form.querySelector('[name="subject"]').value=`LAVA Commercial Lines Exam Result - ${result.name} - ${result.percentage}%`;
+      form.querySelector('[name="candidate_name"]').value=result.name;
+      form.querySelector('[name="agency"]').value=result.agency || 'LAVA Training Batch';
+      form.querySelector('[name="trainer_name"]').value=result.trainer;
+      form.querySelector('[name="score"]').value=String(result.percentage);
+      form.querySelector('[name="passed"]').value=result.passed ? 'Passed':'Failed';
+      form.querySelector('[name="objective_correct"]').value=`${result.objectiveCorrect}/${result.objectiveTotal}`;
+      const dragField=form.querySelector('[name="drag_correct"]');
+      if(dragField) dragField.value='Removed - question-only exam';
+      form.querySelector('[name="take_number"]').value=String(result.takeNumber);
+      form.querySelector('[name="certificate_number"]').value=result.certificateNumber;
+      form.querySelector('[name="submitted_at"]').value=new Date().toLocaleString();
+      form.querySelector('[name="duration_used"]').value=formatTime(usedSeconds);
+      form.querySelector('[name="result_summary"]').value=summary;
+      const formData=new FormData(form);
+      try{
+        const response = await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:new URLSearchParams(formData).toString() });
+        if(!response.ok) throw new Error('Submission failed');
+        return {ok:true, mode:'netlify'};
+      }catch(error){ console.error('Netlify form submission error:',error); return {ok:false, reason:'network'}; }
+    }
+
+    function startExam(){
+      const name=el.candidateName.value.trim();
+      if(!name){ showMessage('Please enter the trainee name first.'); return; }
+      const attempts=getAttemptsForName(name);
+      if(attempts >= MAX_TAKES){ updateAttemptsUI(); showMessage('This trainee already used all 3 allowed takes for this browser.'); return; }
+      const nextTake=attempts+1;
+      setAttemptsForName(name, nextTake);
+      state.currentTake=nextTake;
+      state.started=true;
+      state.result=null;
+      state.adminUnlocked=false;
+      buildExam();
+      state.started=true;
+      state.currentTake=nextTake;
+      renderQuestions();
+      renderResult();
+      renderCertificate(null);
+      updateAttemptsUI();
+      updateButtons();
+      startTimer();
+      showMessage(`Take ${nextTake} started. Questions were randomized. Remaining attempts after this take: ${MAX_TAKES - nextTake}.`);
+    }
+
+    function resetCurrentForm(newShuffle=false){
+      clearTimer();
+      state.started=false;
+      state.currentTake=0;
+      state.secondsLeft=EXAM_DURATION;
+      updateTimer();
+      if(newShuffle){
+        buildExam();
+      } else {
+        state.answers={};
+        state.result=null;
+        state.adminUnlocked=false;
+        renderQuestions();
+        renderProgress();
+        renderResult();
+        renderCertificate(null);
+        closeAdminModal();
+        hideMessage();
+        updateButtons();
+      }
+      updateAttemptsUI();
+    }
+
+    function openAdminModal(){ el.adminError.classList.add('hidden'); el.adminError.textContent=''; el.adminPasswordInput.value=''; el.adminModal.classList.remove('hidden'); el.adminPasswordInput.focus(); }
+    function closeAdminModal(){ el.adminModal.classList.add('hidden'); }
+    function unlockAdmin(){
+      const entered=el.adminPasswordInput.value;
+      if(entered !== ADMIN_PASSWORD){ el.adminError.textContent='Incorrect admin password.'; el.adminError.classList.remove('hidden'); return; }
+      state.adminUnlocked=true;
+      closeAdminModal();
+      renderResult();
+      renderCertificate(state.result);
+      updateButtons();
+      showMessage('Admin review unlocked.');
+    }
+
+    async function submitExam(isAuto=false){
+      if(!state.started){ showMessage('Please start the exam first.'); return; }
+      const missingQuestions=state.questions.filter(q=>!state.answers[q.id]).length;
+      if(!isAuto && missingQuestions > 0){
+        showMessage(`Please finish all items first. Remaining: ${missingQuestions} question(s).`);
+        return;
+      }
+      clearTimer();
+      state.started=false;
+      const objectiveCorrect=state.questions.filter(q=>state.answers[q.id]===q.answer).length;
+      const totalItems=state.questions.length;
+      const percentage=Math.round((objectiveCorrect/totalItems)*100);
+      const passed=percentage >= PASSING_SCORE;
+      const name=el.candidateName.value.trim();
+      const agency=el.agencyName.value.trim();
+      const trainer=el.trainerName.value.trim() || 'LAVA Training Department';
+      const allQuestions=state.questions.map((q,idx)=>({...q,displayNumber:idx+1,userAnswer:state.answers[q.id] || ''}));
+      const missedQuestions=allQuestions.filter(q=>q.userAnswer !== q.answer);
+      state.result={
+        name,
+        agency,
+        trainer,
+        percentage,
+        passed,
+        objectiveCorrect,
+        objectiveTotal:totalItems,
+        takeNumber:state.currentTake,
+        date:new Date().toLocaleDateString(),
+        certificateNumber:'LAVA-CL-'+Date.now().toString().slice(-8),
+        missedQuestions,
+        allQuestions
+      };
+      state.adminUnlocked=false;
+      renderQuestions();
+      renderProgress();
+      renderResult();
+      renderCertificate(state.result);
+      updateButtons();
+      updateAttemptsUI();
+      const attempts=getAttemptsForName(name);
+      const remaining=Math.max(0, MAX_TAKES - attempts);
+      const emailResult=await sendResultSubmission(state.result, isAuto);
+      const emailNote=emailResult.ok ? (emailResult.mode==='emailjs' ? ' A branded email was sent to the admin inboxes.' : ' A copy of the score was sent through the Netlify notification workflow.') : ' Email delivery will work after this file is deployed on Netlify with form detection and email notifications enabled, or after EmailJS is configured.';
+      const retakeNote=state.result.passed ? '' : (remaining > 0 ? '\nClick Prepare Next Take to generate a new randomized version of the exam.' : '\nNo attempts remaining for this trainee in this browser.');
+      showMessage((isAuto ? 'Time is up. The exam was auto-submitted.\n':'' ) + `Exam submitted successfully. Admin password is required to view the result, correct answers, and certificate. Remaining take(s): ${remaining}.` + retakeNote + emailNote);
+    }
+
+    async function downloadCertificate(result){
+      if(!result) return;
+      const loaded=await ensureJsPDF();
+      if(!loaded){ showMessage('PDF library could not be loaded. Please check your internet connection or deploy the file on Netlify. The certificate preview still works.'); return; }
+      try{
+        const { jsPDF } = window.jspdf;
+        const doc=new jsPDF({orientation:'landscape', unit:'pt', format:'a4'});
+        const w=doc.internal.pageSize.getWidth();
+        const h=doc.internal.pageSize.getHeight();
+        let bgData=null, logoData=null;
+        try{ bgData=await imageToDataUrl('images/certificate-bg.png'); }catch(e){}
+        try{ logoData=await imageToDataUrl('images/logo.png'); }catch(e){}
+        if(bgData){ doc.addImage(bgData,'PNG',0,0,w,h); } else { doc.setFillColor(244,240,231); doc.rect(0,0,w,h,'F'); }
+        doc.setDrawColor(107,33,33); doc.setLineWidth(2); doc.rect(18,18,w-36,h-36); doc.setLineWidth(1); doc.rect(32,32,w-64,h-64);
+        if(logoData) doc.addImage(logoData,'PNG',w/2-34,44,68,68);
+        doc.setFont('times','bold'); doc.setTextColor(17,17,17); doc.setFontSize(30); doc.text('Certificate of Completion', w/2, 145, {align:'center'});
+        doc.setFont('times','italic'); doc.setTextColor(123,29,29); doc.setFontSize(18); doc.text('Insurance Commercial Lines Final Examination', w/2, 170, {align:'center'});
+        doc.setFont('helvetica','bold'); doc.setTextColor(123,29,29); doc.setFontSize(12); doc.text('THIS CERTIFICATE IS PROUDLY PRESENTED TO', w/2, 215, {align:'center'});
+        doc.setTextColor(23,23,23); doc.setFont('times','bold'); doc.setFontSize(28); doc.text((result.name||'').toUpperCase(), w/2, 260, {align:'center'}); doc.setDrawColor(46,46,46); doc.line(140,270,w-140,270);
+        doc.setTextColor(90,16,16); doc.setFont('times','normal'); doc.setFontSize(16); doc.text('for successfully passing the Insurance Commercial Lines Final Examination and demonstrating proficiency in the LAVA Insurance training program.', w/2, 315, {align:'center', maxWidth:560});
+        doc.setFont('helvetica','bold'); doc.setTextColor(17,17,17); doc.setFontSize(12); doc.text(`Certificate No: ${result.certificateNumber}`, 95, 390); doc.text(`Agency: ${result.agency || 'LAVA Training Batch'}`, 95, 414); doc.text(`Date Issued: ${result.date}`, 95, 438); doc.text(`Score: ${result.percentage}%`, w-235, 390); doc.text(`Take Number: ${result.takeNumber}`, w-235, 414); doc.text(`Trainer: ${result.trainer}`, w-235, 438);
+        doc.line(w/2-120, 500, w/2+120, 500); doc.setTextColor(123,17,17); doc.setFont('times','bold'); doc.setFontSize(16); doc.text(result.trainer.toUpperCase(), w/2, 520, {align:'center'}); doc.setFontSize(11); doc.text(CERTIFICATE_TRAINER_TITLE.toUpperCase(), w/2, 538, {align:'center'});
+        doc.save((result.name || 'trainee').replace(/\s+/g,'_') + '_LAVA_Insurance_Commercial_Lines_Certificate.pdf');
+      }catch(err){ showMessage('Certificate preview is ready, but PDF generation failed. The on-page certificate still works.'); console.error(err); }
+    }
+
+    el.shuffleBtn.addEventListener('click',()=>{ if(state.started) return; buildExam(); showMessage('Questions were shuffled. The displayed numbering follows proper counting order.'); updateAttemptsUI(); });
+    el.startBtn.addEventListener('click', startExam);
+    el.resetBtn.addEventListener('click', ()=>{ resetCurrentForm(false); showMessage('The current form was reset. Your attempt count was not changed.'); });
+    el.submitBtn.addEventListener('click', ()=>submitExam(false));
+    el.nextTakeBtn.addEventListener('click', ()=>{ resetCurrentForm(true); showMessage('Next take is prepared with a new randomized question order. Click Start Exam when ready.'); });
+    el.adminAccessBtn.addEventListener('click', openAdminModal);
+    el.adminUnlockBtn.addEventListener('click', unlockAdmin);
+    el.adminCancelBtn.addEventListener('click', closeAdminModal);
+    el.adminPasswordInput.addEventListener('keydown', e=>{ if(e.key==='Enter') unlockAdmin(); });
+    el.downloadCertificateBtn.addEventListener('click', ()=>downloadCertificate(state.result));
+    el.candidateName.addEventListener('input', updateAttemptsUI);
+
+    buildExam();
+    updateTimer();
+    updateAttemptsUI();
+    updateButtons();
+  </script>
+</body>
+</html>
